@@ -1,42 +1,7 @@
 import cv2
 import numpy as np
 import math
-from pynput.mouse import Button, Controller
-import time
-
-######################## MOUSE CONTROL SECTION ########################
-wait_time = 1000
-
-class mouse_control:
-    cool_down = int(round(time.time() * 1000))
-    mousec = Controller()
-
-    def init(self):
-        mousec = Controller()
-        cool_down = int(round(time.time() * 1000))
-        (cord_x, cord_y) = mousec.position
-
-    def move_mouse(self, x, y):
-        self.mousec.move(x, y)
-
-    def gesture(self, kind):
-
-        if kind == "right_click" and (int(round(time.time() * 1000)) - int(self.cool_down)) > wait_time:
-            self.mousec.click(Button.right, 1)
-            self.cool_down = int(round(time.time() * 1000))
-            print("right")
-        elif kind == "left_click" and (int(round(time.time() * 1000)) - int(self.cool_down)) > wait_time:
-            self.cool_down = int(round(time.time() * 1000))
-            self.mousec.click(Button.left, 1)
-            print("left")
-        else:
-            pass
-    def control_mouse(self, kind, x, y):
-        if kind == 'move':
-
-            self.move_mouse(x, y)
-        else:
-            self.gesture(kind)
+from mouse_control import mouse_control
 
 #################### HELPER FUNCTIONS SECTION ####################
 
